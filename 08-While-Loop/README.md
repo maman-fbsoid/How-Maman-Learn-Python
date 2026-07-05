@@ -149,4 +149,170 @@ Sebutkan satu makanan!
 [Process exited 0]
 ```
 
-# TO BE CONTINUED
+### Memakai Continue while loop
+
+Apa itu `continue`?
+
+Jadi fungsinya adalah menghentikan sisa kode pada iterasi (putaran) saat ini dan langsung memaksa program melompat ke iterasi berikutnya
+
+Kita bakal pake `continue`
+
+Contoh kodenya
+
+```python
+angka = 0
+while angka < 10:
+    angka += 1
+    if angka % 2 == 0:
+        continue
+
+    print(angka)
+```
+
+Nah cara kerjanya gimana?
+
+Pertama `angka = 0` adalah putaran pertama
+
+Nah kita pake `while` dengan bilng `< 10`
+
+Terus di tambah `angka += 1` yang bikin jadi `angka = 1`
+
+Lalu `if angka % 2 == 0`
+
+Nah apakah 1 habis dibagi 2? TIDAK!
+
+Nah di sini `continue` akhirnya dipake sebagai loncatan
+
+Makanya outputnya
+
+```python
+1
+3
+5
+7
+9
+```
+
+## Loop dengan List dan Dictionary
+
+Nah kita bakal coba gabungin dengan List dan Dictionary kedalah while
+
+### Memindah item dari daftar ke daftar lain
+
+Disini kita bakal mencoba memindah item dari daftar satu ke daftar 2
+
+Contohnya
+
+```python
+makanan_belum_dipesan = ['tempe', 'baso', 'mie']
+makanan_dipesan = []
+
+while makanan_belum_dipesan:
+    makanan_dimakan = makanan_belum_dipesan.pop()
+
+    print(f"Makanan dibuat: {makanan_dimakan}")
+    makanan_dipesan.append(makanan_dimakan)
+
+print("\nMakanan yang sudah di hitung: ")
+for makanan_habis in makanan_dipesan:
+    print(makanan_habis.title())
+```
+
+Di sini buat yang bingung akan kujelaskan
+
+Pertama kita bikin list `makanan_belum_dipesan` dengan isi daftar makanan lalu `makanan_dipesan` dengan isi kosong
+
+Nah kita bilang ke while dan bikin variabeel `makanan_dimakan` dan juga narik `makanan_belum_dipesan` pake `pop()`
+
+Lalu kita tambahin pake `append()`
+
+Abis itu bikin for loop untuk isi `makanan_dipesan`
+
+Udah gitu aja simpel
+
+### Menghapus nilai tertentu yang spesfik di dalam list
+
+Nah kita bakal pake lagi function `remove()`
+
+Contoh
+
+```python
+makanan = ['baso', 'pangsit', 'baso', 'mie', 'baso', 'ayam', 'kambing']
+print(makanan)
+
+while 'baso' in makanan:
+    makanan.remove('baso')
+
+print(makanan)
+```
+
+Outputnya
+
+```python
+['baso', 'pangsit', 'baso', 'mie', 'baso', 'ayam', 'kambing']
+['pangsit', 'mie', 'ayam', 'kambing']
+```
+
+Nah bisa dilihat kalau kehapus kan
+
+### Memakai User Input kedalam While loop
+
+Nah sekarang kita bakal coba pake input
+
+Contoh
+
+```python
+respons = {}
+
+hasil_aktif = True
+
+while hasil_aktif:
+    nama = input("\nSiapa namamu?: ")
+    respon = input("Sebutkan satu makanan yang sangat ingin kamu makan?: ")
+
+    respons[nama] = respon
+
+    repeat = input("Apakah kamu mau mengajak orang lain untuk makan bersamamu?(iya/tidak): ")
+    if repeat == 'tidak':
+        hasil_aktif = False
+
+print("\n--- Hasil Jawaban ---")
+for nama, respon in respons.items():
+    print(f"{nama} ingin makan {respon}.")
+```
+
+Outputnya
+
+```python
+Siapa namamu?: Maman
+Sebutkan satu makanan yang sangat ingin kamu makan?: Mie Ayam
+Apakah kamu mau mengajak orang lain untuk makan bersamamu?(iya/tidak): iya
+
+Siapa namamu?: Budi
+Sebutkan satu makanan yang sangat ingin kamu makan?: Baso
+Apakah kamu mau mengajak orang lain untuk makan bersamamu?(iya/tidak): tidak
+
+--- Hasil Jawaban ---
+Maman ingin makan Mie Ayam.
+Budi ingin makan Baso.
+
+[Process exited 0]
+```
+
+Nah cara kerjanya gimana?
+
+Pertama kan kita bikin dictionary kosong bernama `respons`
+
+Lalu bikin Flag `hasil_aktif` dengan nilai `True`
+
+Terus dalam while kita bikin dua input yaitu nama dan respon
+
+Lalu kita simpan ke Dictionary pake `respons[nama] = respon`
+
+Lalu di repeat dengan `if repeat == 'tidak': hasil_aktif = False` Nah kelihatan kan
+
+Nah terus `hasil_akhir` tinggal nunjukin hasilnya
+
+# Penutup
+
+Baiklah sudah selesai dan makasih udah baca dan maaf jika ada kesalah kata maupun kesalahan kode
