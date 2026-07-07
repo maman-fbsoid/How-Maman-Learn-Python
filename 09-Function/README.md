@@ -265,4 +265,221 @@ Program ini bekerja dengan cara mengambil satu per satu model dari daftar model_
 
 Gituuu
 
-# TO BE CONTINUED
+### Menerima semua argumen berapapun jumlahnya
+
+Kita bakal coba bikin fungsi yang bikin kita bisa masukin arumen berapapun jumlahnya
+
+Caranya?
+
+```python
+def bakso(*isian):
+    print(isian)
+
+bakso('daging')
+bakso('usus', 'cabai', 'naga')
+```
+
+Outputnya?
+
+```python
+('daging',)
+('usus', 'cabai', 'naga')
+```
+
+Jadi kita kek bilang ke python bahwa "Kumpulin semua argumen kedalam satu wadah berapapun jumlahnya"
+
+Jadi fungsi jadi `*` tuh bikin kita bebas berapapun jumlahnya masukin argumen
+
+Sekarang coba kita rapikan dikit
+
+```python
+def bakso(*isian):
+    print("\nIsian dalam baksomu adalah: ")
+    for topping in isian:
+        print(f"- {topping}")
+
+bakso('daging')
+bakso('usus', 'cabai', 'naga')
+```
+
+Outpunya
+
+```python
+Isian dalam baksomu adalah:
+- daging
+
+Isian dalam baksomu adalah:
+- usus
+- cabai
+- naga
+```
+
+Nah jadi rapi dan bagus sekarang
+
+### Mencampurkan argumen
+
+Nah kita bakal coba campur menyampur dan ya tentu saja kodenya bakal seikit ribet kalau dibaca
+
+Jadi kita bakal bikin kode yang sama tapi akan kita variasikan
+
+```python
+def bakso(jumlah, *isian):
+    print(f"\nMembuat bakso sebanyak {jumlah}, dengan isian: ")
+    for topping in isian:
+        print(f"- {topping}")
+
+bakso(2, 'daging')
+bakso(12, 'cabai', 'daging', 'usus')
+```
+
+Outputnya
+
+```pyhon
+Membuat bakso sebanyak 2, dengan isian:
+- daging
+
+Membuat bakso sebanyak 12, dengan isian:
+- cabai
+- daging
+- usus
+```
+
+Nah disini kalo dilihat ya bahwa kita memodifikasi dengan menambahkan `jumlah` dan string baru
+
+That simple
+
+### Menerima jumlah keyword argument yang tidak terbatas
+
+Nah sekarang kita bakal coba dengan function dapat menerima keyword argumen yang tak terbatas
+
+Gimana caraya?
+
+Sini praktek dulu nanti tak jelasin
+
+```python
+def build_profile(awal, akhir, **user_info):
+    profile = {}
+    profile['nama_depan'] = awal
+    profile['nama_belakang'] = akhir
+    for key, value in user_info.items():
+        profile[key] = value
+    return profile
+
+user_profile = build_profile('ada', 'lovelace', location='garut', hobi='makan pecel')
+print(user_profile)
+```
+
+Outputnya
+
+```python
+{'nama_depan': 'ada', 'nama_belakang': 'lovelace', 'location': 'garut', 'hobi': 'makan p
+ecel'}
+```
+
+Nah jadi gini le
+
+Apa sih `**user_info`? itu tuh kwargs
+
+Jadi dia kek bilang ke kalian "Kasih gue nama depan dan belakang, terus kalau ada informasi tambahan apa pun, tampung semuanya"
+
+Nah kenapa pake `location=` dan `hobi=`? kok pake sama dengan?
+
+Jadi kita pake itu tuh karena ya `garut` dan `makan pecel` tuh gabisa di baca pyton masuk mana karena ya parameter lain udah kepake
+
+Jadi kita pake tuh sama dengan biar masuk ke kwargs karena itu keyword arguments
+
+# import
+
+Nah beberapa dari kalian mungkin pernah lihat ini di dalam script python
+
+Jadi apa sih `import` ini?
+
+Jadi ini tuh bisa bikin kita pake kode di tempat lain buat dipake di tempat yang sekarang untuk menghemat ruang dan waktu kalian juga biar ga ribet
+
+Contohnya gimana sih?
+
+Gini loh ya rek
+
+```python
+def isi_bakso(jumlah, *isian):
+    print(f"\nMembuat bakso sebanyak {jumlah}, dengan isian: ")
+    for topping in isian:
+        print(f"- {topping}")
+```
+
+Anggap kode di atas ada di dalam file `tes_github.py` lalu kita mau salin kode di dalamnya ke file lain
+
+Anggep file kedua namanya `tes_git.py` jadi tinggal pake import
+
+```python
+import tes_github
+
+tes_github.isi_bakso(12, 'daging')
+tes_github.isi_bakso(90, 'cabai', 'usus', 'naga')
+```
+
+Tuh! gimana? faham? outputnya sama loh ya!
+
+### import function spesifik
+
+Nah jadi kita bakal pake import buat dipake di function yang spesifik
+
+Caranya gini
+
+```python
+from tes_github import isi_bakso
+
+isi_bakso(12, 'daging')
+isi_bakso(90, 'cabai', 'usus', 'naga')
+```
+
+Nah jadi kalian alih alih pake `tes_github.isi_bakso` satu persatu, mending langsung tunjuk `from tes_github from isi_bakso` gitu aja
+
+### Alias
+
+Nah buat user linux, kata alias udah ga asing lagi lah ya
+
+Buat yang gak tahu, ini tuh semacam kita kasih nama custom ke sesuatu dan ini dipake di import
+
+Caranya? gini
+
+```python
+import tes_github as tg
+
+tg.isi_bakso(12, 'daging')
+tg.isi_bakso(90, 'cabai', 'usus', 'naga')
+```
+
+Nah alih alih pake `tes_github.isi_bakso` yang panjang, kalian bisa singkat pake `as` jadi `tg` gitu!
+
+Kalo pake function spesifik jadinyya gini
+
+```python
+from tes_github import isi_bakso as ib
+
+ib(12, 'daging')
+ib(90, 'cabai', 'usus', 'naga')
+```
+
+Nah tuh lihat bahwa kita pake `ib` alih alih pake `isi_bakso`
+
+### import semua function
+
+Materi terakhir kita bakal impport semua function jadi satu pake `*`
+
+Gini caranya
+
+```python
+from tes_github import *
+
+isi_bakso(12, 'daging')
+isi_bakso(90, 'cabai', 'usus', 'naga')
+```
+
+Jadi pake ini kalian ga usah nyebut satu persatu function. Tinggal pake tanda petik udah jadi
+
+# Penutup
+
+Baiklah makasih semua yang udah dukung dan baca. Kalo ada kesalahan dan typo mohon maaf
+
+ADIOS!
