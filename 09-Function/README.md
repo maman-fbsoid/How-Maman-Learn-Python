@@ -127,8 +127,6 @@ print(programmer)
 
 Nah kan pake `nama_tengah=''` itu adalah Default Parameter alias parameter bawaan. Nah juga ini fungsinya bilang ke python "Kalo inputnya kosong di kosongin aja jangan di eror-in"
 
-Gitu
-
 Lalu kita biki 2 kondisi bahwa kalo nanti muncul 3 nama kita pake yang if dan ya kalo 2 sebaliknya
 
 Simpel kan logikanya
@@ -139,5 +137,132 @@ Oh iya ini outputnya
 Ada Lovelace
 Terry A. Davis
 ```
+
+Gitu
+
+### Kombinasi dengan while loop
+
+Nah sekarang kita bakal gabungin pake while loop bikin infinity loop
+
+```python
+def nama_orang(nama_depan, nama_belakang):
+    nama_lengkap = f"{nama_depan} {nama_belakang}"
+    return nama_lengkap.title()
+
+while True:
+    print("\nMohon masukan namamu")
+    n_depan = input("Nama depan: ")
+    n_belakang = input("Nama belakang: ")
+
+    nama_lengkap = nama_orang(n_depan, n_belakang)
+    print(f"\nHalo, {nama_lengkap}!")
+```
+
+Outputnya
+
+```python
+Mohon masukan namamu
+Nama depan: Maman
+Nama belakang: Fungky
+
+Halo, Maman Fungky!
+
+Mohon masukan namamu
+Nama depan: Budi
+Nama belakang: Utomo
+
+Halo, Budi Utomo!
+
+Mohon masukan namamu
+Nama depan: 
+```
+
+Nah dia abakal loop terus tanpa henti nanyain namamu
+
+Sekarang coba kita bikin biar bisa keluar
+
+```python
+def nama_orang(nama_depan, nama_belakang):
+    nama_lengkap = f"{nama_depan} {nama_belakang}"
+    return nama_lengkap.title()
+
+while True:
+    print("\nMohon masukan namamu")
+    print("(Ketik 'q' untuk keluar kapan saja")
+    
+    n_depan = input("Nama depan: ")
+    if n_depan == 'q':
+        break
+    
+    n_belakang = input("Nama belakang: ")
+    if n_belakang == 'q':
+        break
+
+    nama_lengkap = nama_orang(n_depan, n_belakang)
+    print(f"\nHalo, {nama_lengkap}!")
+```
+
+Nah kalo kalian lihat, kalo kuketi q bakal bikin program berhenti pake `break`
+
+### Melewati list
+
+Nah kita bakal ngelewatin list agar muncul urut satu per satu elemen
+
+Caranya kita bakal gabungin `def` dan for loop
+
+Contoh
+
+```python
+def user_terbaik(namanya):
+    for nama in namanya:
+        menyapa = f"Halo, {nama.title()}!"
+        print(menyapa)
+
+username = ['budi', 'epan', 'bambang']
+user_terbaik(username)
+```
+
+Outputnya
+
+```python
+Halo, Budi!
+Halo, Epan!
+Halo, Bambang!
+```
+
+Nah cara kerjanya juga simpel dengan `def` bikin function, terus kam isi pake for loop
+
+### Modifikasi list dalam Function
+
+Jadi di sini kita bakal belajar cara mdifikasi list yang ada di dalam function
+
+Ini agak ribet sih cara kerjanya tapi tetap bakal kujelaskan
+
+Contoh kodenya
+
+```python
+def model_3d(model_belum_jadi, model_jadi):
+    while model_belum_jadi:
+        model_sekarang = model_belum_jadi.pop()
+
+        print(f"Membuat model: {model_sekarang}")
+        model_jadi.append(model_sekarang)
+
+def menunjukkan_model_jadi(model_jadi):
+    print("\nModelnya lagi di buat ya: ")
+    for model_selesai in model_jadi:
+        print(model_jadi)
+
+model_belum_jadi = ['bus', 'truk', 'kereta']
+model_jadi = []
+model_3d(model_belum_jadi, model_jadi)
+menunjukkan_model_jadi(model_jadi)
+```
+
+Jadi ini bekerja tuh
+
+Program ini bekerja dengan cara mengambil satu per satu model dari daftar model_belum_jadi menggunakan pop(), menampilkan proses pembuatannya, lalu memindahkannya ke daftar model_jadi menggunakan append() hingga daftar model_belum_jadi kosong, kemudian function menunjukkan_model_jadi() menampilkan semua model yang sudah selesai dibuat
+
+Gituuu
 
 # TO BE CONTINUED
