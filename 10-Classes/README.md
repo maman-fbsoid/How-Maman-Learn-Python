@@ -98,5 +98,3 @@ your_dog.makan()
 ```
 
 Nah disini kita nambahin `your_dog` sebagai tambahan
-
-# TO BE CONTINUED
